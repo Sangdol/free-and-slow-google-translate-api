@@ -12,6 +12,9 @@ use Rack::JSONP
 session = GoogleDrive.login(ENV['GOOGLE_ID'], ENV['GOOGLE_PASSWD'])
 ws = session.spreadsheet_by_key(ENV['SPREADSHEET_KEY']).worksheets[0]
 
+MAX_ROW_NUMBER = 1000
+row = 0;
+
 get '/translate' do
 	content_type :json
 
@@ -21,11 +24,15 @@ get '/translate' do
 	texts = params[:text]
 	result = {}
 
-	column = 1 + rand(200)
+	if texts.is_a? String
+		texts = [texts]
+	end
 
-	# Call cript from spreadsheet
+	row = (row + 1) % MAX_ROW_NUMBER
+
+	# Call script from spreadsheet
 	texts.each_with_index do |text, index|
-		ws[index + 1, column] = "=GoogleTranslate(\"#{text}\", \"#{from}\", \"#{to}\")"
+		ws[row, index + 1] = "=GoogleTranslate(\"#{text}\", \"#{from}\", \"#{to}\")"
 	end
 
 	# Save and reload the worksheet to get my changes effect
@@ -33,7 +40,7 @@ get '/translate' do
 	ws.reload
 
 	texts.each_with_index do |text, index|
-		result[text] = ws[index + 1, column]
+		result[text] = ws[row, index + 1]
 	end
 
 	result[:elapased_time] = Time.now - start_time
