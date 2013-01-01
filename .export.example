@@ -1,0 +1,4 @@
+# Use this file to set ENV variable
+export GOOGLE_ID=
+export GOOGLE_PASSWD=
+export SPREADSHEET_KEY=
