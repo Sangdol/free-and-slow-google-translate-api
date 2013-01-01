@@ -2,17 +2,15 @@ require 'rubygems'
 require 'bundler/setup'
 
 require 'sinatra'
+require 'json'
 require 'google_drive'
 require 'rack/contrib/jsonp'
-require 'json'
-require 'yaml'
 
 # Need "callback" query string parameter
 use Rack::JSONP
 
-config = YAML.load_file('config.yaml')
-session = GoogleDrive.login(config['google_id'], config['google_passwd'])
-ws = session.spreadsheet_by_key(config['spreadsheet_key']).worksheets[0]
+session = GoogleDrive.login(ENV['GOOGLE_ID'], ENV['GOOGLE_PASSWD'])
+ws = session.spreadsheet_by_key(ENV['SPREADSHEET_KEY']).worksheets[0]
 
 get '/translate' do
 	content_type :json
