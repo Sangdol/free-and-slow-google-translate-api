@@ -1,4 +1,36 @@
-free-and-slow-google-translate-api
-==================================
+# Free and Slow Google Translate API
 
-It's free Google Translate API for toy projects. It's slow and not thread safe.
+## How to use it?
+
+[Test it](http://google-translate-api.herokuapp.com/translate?from=en&to=ko&text[]=hi,%20how%20are%20you?&text[]=i'm%20fine,%20thank%20you&callback=test)
+
+Test URL
+
+* http://google-translate-api.herokuapp.com/translate
+
+Query strings
+
+* from
+* to
+* text(or text[] when you request multiple texts - up to 256 texts)
+* callback - callback function name for [JSONP](http://en.wikipedia.org/wiki/JSONP)
+
+## How does it work?
+
+It uses Google Spreadsheet API to translate.
+
+## Limits
+
+### Slow
+
+It's very slow because it uses Google Spreadsheet to translate. It's much better if you query multiple texts at once.
+
+### Not thread-safe
+
+It's not thread-safe because it uses single spareadsheet to translate. However, it can process 1000 requests concurrently.
+
+# References
+
+* [Google Drive Ruby API](https://github.com/gimite/google-drive-ruby)
+* [StackOverflow: Alternative to Google Translate API](http://stackoverflow.com/questions/6151668/alternative-to-google-translate-api#answer-8543979)
+* [Google Docs, Sheets, and Slides size limits](http://support.google.com/drive/bin/answer.py?hl=en&answer=37603)
