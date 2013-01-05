@@ -18,6 +18,10 @@ row = 0;
 get '/translate' do
 	content_type :json
 
+	if (params.empty?)
+		redirect 'https://github.com/Sangdol/free-and-slow-google-translate-api'
+	end
+
 	start_time = Time.now
 	from = params[:from]
 	to = params[:to]
