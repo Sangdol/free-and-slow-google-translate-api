@@ -2,7 +2,7 @@
 
 ## How to use it?
 
-[Test it](http://google-translate-api.herokuapp.com/translate?from=en&to=ko&text[]=hi,%20how%20are%20you?&text[]=i'm%20fine,%20thank%20you&callback=test)
+[>> Test it <<](http://google-translate-api.herokuapp.com/translate?from=en&to=ko&text[]=hi,%20how%20are%20you?&text[]=i'm%20fine,%20thank%20you&callback=test)
 
 Test URL
 
@@ -10,9 +10,9 @@ Test URL
 
 Query strings
 
-* from
-* to
-* text(or text[] when you request multiple texts - up to 256 texts)
+* from - [Language code](https://developers.google.com/translate/v2/using_rest#language-params) of text to translate
+* to - Language code of target language
+* text(or text[] when you request multiple texts) - text to translate. Up to 256 texts
 * callback - callback function name for [JSONP](http://en.wikipedia.org/wiki/JSONP)
 
 ## How does it work?
