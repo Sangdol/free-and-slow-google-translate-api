@@ -15,6 +15,10 @@ Query strings
 * text(or text[] when you request multiple texts) - text to translate. Up to 256 texts
 * callback - callback function name for [JSONP](http://en.wikipedia.org/wiki/JSONP)
 
+## What is this for?
+
+I wanted to use Google Translate API for my toy project, but it wasn't free. I didn't wanted to pay for my toy project, so I made this. You may can use this for your side projects or something.
+
 ## How does it work?
 
 It uses Google Spreadsheet API to translate.
