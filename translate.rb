@@ -23,7 +23,7 @@ get '/translate' do
 	end
 
 	start_time = Time.now
-	from = params[:from]
+	from = params[:from] # Optional
 	to = params[:to]
 	texts = params[:text]
 	result = {}
@@ -36,7 +36,12 @@ get '/translate' do
 
 	# Call script from spreadsheet
 	texts.each_with_index do |text, index|
-		ws[row, index + 1] = "=GoogleTranslate(\"#{text}\", \"#{from}\", \"#{to}\")"
+		if from.nil?
+			ws[row, 1] = "=DetectLanguage(\"#{text}\")"
+			ws[row, index + 2] = "=GoogleTranslate(\"#{text}\", A#{row}, \"#{to}\")"
+		else
+			ws[row, index + 2] = "=GoogleTranslate(\"#{text}\", \"#{from}\", \"#{to}\")"
+		end
 	end
 
 	# Save and reload the worksheet to get my changes effect
@@ -44,7 +49,7 @@ get '/translate' do
 	ws.reload
 
 	texts.each_with_index do |text, index|
-		result[text] = ws[row, index + 1]
+		result[text] = ws[row, index + 2]
 	end
 
 	result[:elapased_time] = Time.now - start_time
