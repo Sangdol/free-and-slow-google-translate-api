@@ -18,9 +18,8 @@ row = 0;
 get '/translate' do
 	content_type :json
 
-	if (params.empty?)
-		redirect 'https://github.com/Sangdol/free-and-slow-google-translate-api'
-	end
+	GITHUB_PAGE = 'https://github.com/Sangdol/free-and-slow-google-translate-api'
+	redirect GITHUB_PAGE if params.empty?
 
 	start_time = Time.now
 	from = params[:from] # Optional
@@ -28,20 +27,19 @@ get '/translate' do
 	texts = params[:text]
 	result = {}
 
-	if texts.is_a? String
-		texts = [texts]
-	end
-
+	texts = [texts] if texts.is_a? String
 	row = (row + 1) % MAX_ROW_NUMBER
+
+	if from.nil?
+		ws[row, 1] = "=DetectLanguage(\"#{texts[0]}\")"
+		from = "A#{row}"
+	else
+		from = "\"#{from}\""
+	end
 
 	# Call script from spreadsheet
 	texts.each_with_index do |text, index|
-		if from.nil?
-			ws[row, 1] = "=DetectLanguage(\"#{text}\")"
-			ws[row, index + 2] = "=GoogleTranslate(\"#{text}\", A#{row}, \"#{to}\")"
-		else
-			ws[row, index + 2] = "=GoogleTranslate(\"#{text}\", \"#{from}\", \"#{to}\")"
-		end
+		ws[row, index + 2] = "=GoogleTranslate(\"#{text}\", #{from}, \"#{to}\")"
 	end
 
 	# Save and reload the worksheet to get my changes effect
