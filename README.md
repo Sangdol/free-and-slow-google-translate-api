@@ -10,9 +10,9 @@ Test URL
 
 Query strings
 
-* from - [Language code](https://developers.google.com/translate/v2/using_rest#language-params) of text to translate
+* from - (Optional)[Language code](https://developers.google.com/translate/v2/using_rest#language-params) of text to translate. If this parameter is not provided, it will be detected. 
 * to - Language code of target language
-* text(or text[] when you request multiple texts) - text to translate. Up to 256 texts
+* text(or text[] when you request multiple texts) - text to translate. Up to 255 texts
 * callback - callback function name for [JSONP](http://en.wikipedia.org/wiki/JSONP)
 
 ## What is this for?
