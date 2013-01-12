@@ -6,7 +6,7 @@ require 'json'
 require 'google_drive'
 require 'rack/contrib/jsonp'
 
-# Need "callback" query string parameter
+# Need "callback" query string parameter for JSONP
 use Rack::JSONP
 
 session = GoogleDrive.login(ENV['GOOGLE_ID'], ENV['GOOGLE_PASSWD'])
