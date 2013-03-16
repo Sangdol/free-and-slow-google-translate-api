@@ -27,7 +27,7 @@ It uses Google Spreadsheet API to translate.
 
 ### Slow
 
-It's very slow because it uses Google Spreadsheet to translate. It's much better if you query multiple texts at once.
+It's very slow because it uses Google Spreadsheet to translate.
 
 ### Not thread-safe
 
