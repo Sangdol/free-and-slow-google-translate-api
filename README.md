@@ -2,7 +2,7 @@
 
 ## How to use it?
 
-[>> Test it <<](http://google-translate-api.herokuapp.com/translate?from=en&to=ko&text[]=hi,%20how%20are%20you?&text[]=i'm%20fine,%20thank%20you&callback=test)
+[>> Demo <<](http://google-translate-api.herokuapp.com/translate?from=en&to=ko&text[]=hi,%20how%20are%20you?&text[]=i'm%20fine,%20thank%20you&callback=test)
 
 Test URL
 
