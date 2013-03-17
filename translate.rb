@@ -50,6 +50,6 @@ get '/translate' do
 		result[text] = ws[row, index + 2]
 	end
 
-	result[:elapased_time] = Time.now - start_time
+	result[:elapsed_time] = Time.now - start_time
 	result.to_json
 end
