@@ -1,5 +1,9 @@
 # Free and Slow Google Translate API
 
+_As Google changed their authentication API, this project won't work anymore. For now, I don't have any plan to fix the issue. Any contributions would be welcome._
+
+----
+
 ## How to use it?
 
 [>> Demo <<](http://google-translate-api.herokuapp.com/translate?from=en&to=ko&text[]=hi,%20how%20are%20you?&text[]=i'm%20fine,%20thank%20you&callback=test)
